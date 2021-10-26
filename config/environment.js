@@ -3,6 +3,7 @@
 module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'bpfcaudit-ui',
+    podModulePrefix: 'bpfcaudit-ui/pods',
     environment,
     rootURL: '/',
     locationType: 'auto',

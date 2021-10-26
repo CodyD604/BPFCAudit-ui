@@ -2,7 +2,7 @@ import Model, { attr, hasMany } from '@ember-data/model';
 
 export default class ServiceModel extends Model {
   @attr() name!: string;
-  @hasMany('audit') audits!: any[];
+  @hasMany('audit') audits!: any[]; // TODO: type relationships
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
