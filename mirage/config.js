@@ -2,7 +2,7 @@ import faker from 'faker';
 
 /* eslint-disable ember/no-get */
 export default function () {
-  this.namespace = 'api';
+  this.namespace = 'bpfca/api/v1';
 
   this.get('/services');
   this.get('/services/:id');
