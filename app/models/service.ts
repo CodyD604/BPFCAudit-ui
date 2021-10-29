@@ -1,8 +1,12 @@
-import Model, { attr, hasMany } from '@ember-data/model';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
+import ServiceMeta from '../types/service-meta';
 
 export default class ServiceModel extends Model {
   @attr() name!: string;
-  @hasMany('audit') audits!: any[]; // TODO: type relationships
+  // Assigned in the serializer if applicable. There is probably a better way to do this.
+  @attr() meta?: ServiceMeta;
+  @belongsTo('policy') policy?: any; // TODO: type relationships
+  @hasMany('audit') audits?: any[]; // TODO: type relationships
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

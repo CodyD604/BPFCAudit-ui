@@ -7,5 +7,6 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
+  this.route('services');
   this.route('service', { path: '/service/:service_id' });
 });

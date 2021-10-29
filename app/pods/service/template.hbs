@@ -1,2 +1,14 @@
-<ServiceHeader class="service-header"></ServiceHeader>
-<p>test content</p>
+<div class="service-route">
+    <ServiceHeader @model={{this.model}}></ServiceHeader>
+
+    <div class="service-content">
+        <div class="policy-container">
+            <PolicyHeader @policy={{this.model.policy}} @coversOtherRules={{false}}></PolicyHeader>
+            <PolicyHeatmap @policy={{this.model.policy}}></PolicyHeatmap>
+        </div>
+        <div class="policy-container">
+            <PolicyHeader @coversOtherRules={{true}}></PolicyHeader>
+            <PolicyHeatmap></PolicyHeatmap>
+        </div>
+    </div>
+</div>

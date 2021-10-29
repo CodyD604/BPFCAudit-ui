@@ -1,0 +1,7 @@
+<div class="policy-heatmap">
+    {{#each policyByLine as |policyLine|}}
+    <div class="heatmap-line">
+        <span class="heat-indicator" style={{(concat "color:#" this.colour)}}>(1.2k)</span>{{policyLine}}
+    </div>
+    {{/each}}
+</div>

@@ -1,0 +1,19 @@
+.policy-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+    border-bottom: 1px solid darkgrey;
+
+    .policy-header-summary-counts {
+        font-size: 12px;
+    }
+
+    .policy-header-buttons-right {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        flex-grow: 1;
+    }
+}

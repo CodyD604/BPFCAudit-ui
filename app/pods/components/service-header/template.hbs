@@ -1,12 +1,24 @@
 <div class="service-header">
-    <BsButton @type="tertiary" @size="sm">
+    <BsButton @type="tertiary" @size="sm" @onClick={{this.backButtonClick}}>
         <FaIcon @icon="chevron-left" @size="2x" />
     </BsButton>
 
-    <div class="service-summary">
-        foo<br>
-        Events not covered by policy detected<br>
-        Capture on 08/10/2021 selected<br>
-        Service events last captured 08/10/2021<br>
+    <div class="service-header-summary">
+        <h4>{{@model.name}}</h4>
+        {{this.eventsLastCaptured}}
+    </div>
+
+    <div class="service-header-buttons-right">
+        <BsButton @type="tertiary">
+            <FaIcon @icon="calendar-alt" @size="3x" />
+        </BsButton>
+
+        <BsButton @type="tertiary">
+            <FaIcon @icon="archive" @size="3x" />
+        </BsButton>
+
+        <BsButton @type="tertiary">
+            <FaIcon @icon="pen-square" @size="3x" />
+        </BsButton>
     </div>
 </div>

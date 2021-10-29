@@ -1,0 +1,25 @@
+$heat-indicator-width: 40px;
+
+.policy-heatmap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 2px;
+
+    .heat-indicator {
+        color: #888;
+        width: $heat-indicator-width;
+        display: inline-block;
+        margin-right: 3px;
+        user-select: none;
+    }
+}
+
+.policy-heatmap::before {
+    content: "";
+    position: absolute;
+    border-left: 1px solid darkgrey;
+    margin-left: $heat-indicator-width - 1px;
+    top: 0;
+    bottom: 0;
+}
