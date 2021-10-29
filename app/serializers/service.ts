@@ -1,4 +1,4 @@
-import ApplicationSerializer from './application';
+import ApplicationSerializer from 'bpfcaudit-ui/serializers/application';
 
 export default class ServiceSerializer extends ApplicationSerializer {
   // TODO: just use spread operator on arguments (right now linter/TS freak out)

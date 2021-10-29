@@ -3,7 +3,7 @@ import Model, { attr, belongsTo } from '@ember-data/model';
 export default class PolicyModel extends Model {
   @attr() name!: string;
   @attr() policyContent!: string;
-  @belongsTo('service') service: any;
+  @belongsTo('service', { async: false }) service: any;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

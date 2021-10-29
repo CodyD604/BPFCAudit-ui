@@ -15,14 +15,20 @@ export default class ServiceHeader extends Component<ServiceHeaderArgs> {
     return this.args.model.meta;
   }
 
+  get serviceName() {
+    if (this.args.model) {
+      return this.args.model.name;
+    }
+    return 'No service found';
+  }
+
   get eventsLastCaptured() {
     if (this.meta && this.meta.lastAudit) {
       return (
         'Service last audited at ' + this.args.model.meta?.lastAudit // TODO: format date to user's local time
       );
-    } else {
-      return 'Service not yet audited';
     }
+    return 'Service not yet audited';
   }
 
   @action

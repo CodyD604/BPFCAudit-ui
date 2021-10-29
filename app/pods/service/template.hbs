@@ -1,10 +1,12 @@
 <div class="service-route">
-    <ServiceHeader @model={{this.model}}></ServiceHeader>
+    <ServiceHeader @model={{this.model.service}}></ServiceHeader>
 
     <div class="service-content">
         <div class="policy-container">
-            <PolicyHeader @policy={{this.model.policy}} @coversOtherRules={{false}}></PolicyHeader>
-            <PolicyHeatmap @policy={{this.model.policy}}></PolicyHeatmap>
+            <PolicyHeader @policy={{this.model.service.policy}} @coversOtherRules={{false}}
+                @policyLineMeta={{this.model.policyLines.meta}}></PolicyHeader>
+            <PolicyHeatmap @policy={{this.model.service.policy}} @policyLines={{this.model.policyLines}}>
+            </PolicyHeatmap>
         </div>
         <div class="policy-container">
             <PolicyHeader @coversOtherRules={{true}}></PolicyHeader>
