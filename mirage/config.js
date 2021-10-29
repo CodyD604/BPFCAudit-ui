@@ -10,7 +10,7 @@ export default function () {
     const requestData = JSON.parse(request.requestBody);
     const policyLines = requestData.policy.split('\n');
     const annotatedLines = [];
-    const eventCountUpperBound = 10 ** 3;
+    const eventCountUpperBound = 10 ** 6;
     var maxEventCount = 0;
     var minEventCount = eventCountUpperBound;
     var eventTotal = 0;
@@ -28,7 +28,7 @@ export default function () {
       };
 
       if (line.trim().charAt(0) == '-') {
-        const eventCount = faker.datatype.number(10 ** 3);
+        const eventCount = faker.datatype.number(eventCountUpperBound);
 
         lineToAdd.attributes.eventCount = eventCount;
         eventTotal += eventCount;

@@ -5,6 +5,7 @@ import Rainbow from 'rainbowvis.js';
 import PolicyModel from 'bpfcaudit-ui/models/policy';
 import PolicyLine from 'bpfcaudit-ui/models/policy-line';
 import PolicyLineMeta from 'bpfcaudit-ui/types/policy-line-meta';
+import { abbreviateNumber } from 'js-abbreviation-number';
 
 interface PolicyHeatmapArgs {
   policy?: PolicyModel;
@@ -70,7 +71,7 @@ export default class PolicyHeatmap extends Component<PolicyHeatmapArgs> {
           let eventCountStr = '';
 
           if (eventCount) {
-            eventCountStr = '(' + eventCount + ')';
+            eventCountStr = '(' + abbreviateNumber(eventCount, 0) + ')';
             heatColour = colourSpectrum.colourAt(eventCount);
           }
 
