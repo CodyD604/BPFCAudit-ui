@@ -9,7 +9,10 @@ export default class ServiceSerializer extends ApplicationSerializer {
     id: any,
     requestType: any
   ) {
-    payload.data.attributes.meta = payload.meta;
+    // If singular, set meta. There is probably a better way to do this.
+    if (payload.data.attributes) {
+      payload.data.attributes.meta = payload.meta;
+    }
     return super.normalizeResponse(
       store,
       primaryModelClass,

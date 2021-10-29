@@ -2,7 +2,7 @@ import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
   name(i) {
-    return `Policy ${i}`;
+    return `Policy ${i + 1}`;
   },
 
   policyContent() {

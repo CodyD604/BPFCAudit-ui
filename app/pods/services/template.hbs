@@ -1,1 +1,9 @@
 All of the services!
+
+<ul>
+    {{#each this.model as |service|}}
+    <li>
+        <a href={{(concat "service/" service.id)}}>{{service.name}}</a>
+    </li>
+    {{/each}}
+</ul>

@@ -2,7 +2,7 @@ import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
   name(i) {
-    return `Service ${i}`;
+    return `Service ${i + 1}`;
   },
 
   afterCreate(service, server) {
