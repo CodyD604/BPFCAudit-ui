@@ -68,10 +68,10 @@ export default class PolicyHeatmap extends Component<PolicyHeatmapArgs> {
         .map((value, index) => {
           const eventCount = eventDataByLine[index];
           let heatColour = '212529'; // Black by default
-          let eventCountStr = '';
+          let eventCountStr = null;
 
           if (eventCount) {
-            eventCountStr = '(' + abbreviateNumber(eventCount, 0) + ')';
+            eventCountStr = abbreviateNumber(eventCount, 0);
             heatColour = colourSpectrum.colourAt(eventCount);
           }
 

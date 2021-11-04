@@ -1,4 +1,4 @@
-$heat-indicator-width: 43px;
+$heat-container-width: 52px;
 
 .policy-heatmap {
     width: 100%;
@@ -6,12 +6,23 @@ $heat-indicator-width: 43px;
     position: relative;
     padding: 2px;
 
-    .heat-indicator {
-        color: #888;
-        width: $heat-indicator-width;
-        display: inline-block;
-        margin-right: 3px;
-        user-select: none;
+    .heatmap-line {
+        display: flex;
+        align-items: center;
+
+        .heat-container {
+            width: $heat-container-width;
+            display: flex;
+            align-items: center;
+            margin-right: 3px;
+            user-select: none;
+
+            .heat-indicator {
+                height: 30%;
+                width: 30%;
+                margin-right: 2px;
+            }
+        }
     }
 }
 
@@ -19,7 +30,7 @@ $heat-indicator-width: 43px;
     content: "";
     position: absolute;
     border-left: 1px solid darkgrey;
-    margin-left: $heat-indicator-width - 1px;
+    margin-left: $heat-container-width - 1px;
     top: 0;
     bottom: 0;
 }

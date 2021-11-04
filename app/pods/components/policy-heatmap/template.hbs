@@ -1,8 +1,16 @@
 <div class="policy-heatmap">
     {{#each policyByLine as |policyLine|}}
     <div class="heatmap-line">
-        <span class="heat-indicator" style={{(concat "color:#" policyLine.heatColour)}}>{{policyLine.eventCount}}</span><span
-            class="policy-line">{{policyLine.content}}</span>
+        <span class="heat-container">
+            {{#if policyLine.eventCount}}
+                <svg class='heat-indicator' viewBox="0 0 12 12">
+                    <circle cx="50%" cy="50%" r="5" fill={{(concat "#" policyLine.heatColour)}} stroke="black"
+                        stroke-width="1" />
+                </svg>
+                {{policyLine.eventCount}}
+            {{/if}}
+        </span>
+        <span class="policy-line">{{policyLine.content}}</span>
     </div>
     {{/each}}
 </div>
