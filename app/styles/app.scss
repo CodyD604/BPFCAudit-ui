@@ -1,3 +1,6 @@
+$bpfca-global-font: Roboto;
+$bpfca-global-font-size: 14px;
+
 @use "app/pods/service/style.scss" as serviceRoute;
 @use "app/pods/components/service-header/style.scss" as serviceHeader;
 @use "app/pods/components/policy-header/style.scss" as policyHeader;
@@ -5,9 +8,15 @@
 
 @import "ember-bootstrap/bootstrap";
 
+/* Probably don't want to use global selector */
 * {
-    font-family: Roboto;
-    font-size: 14px;
+    font-family: $bpfca-global-font;
+    font-size: $bpfca-global-font-size;
+}
+
+pre {
+    font-family: $bpfca-global-font;
+    font-size: $bpfca-global-font-size;
 }
 
 h4 {
