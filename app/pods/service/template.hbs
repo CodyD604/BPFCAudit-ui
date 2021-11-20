@@ -9,8 +9,9 @@
             </PolicyHeatmap>
         </div>
         <div class="policy-container">
-            <PolicyHeader @coversOtherRules={{true}}></PolicyHeader>
-            <PolicyHeatmap></PolicyHeatmap>
+            <PolicyHeader @coversOtherRules={{true}} @policyLineMeta={{this.model.policyLines.meta}}></PolicyHeader>
+             <PolicyHeatmap @policyLines={{this.model.policyLines}}>
+            </PolicyHeatmap>
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 export default interface PolicyLineMeta {
-  eventTotal: number;
+  includedByPolicyEventTotal: number;
+  defaultPolicyEventTotal: number;
   minEventCount: number;
   maxEventCount: number;
 }

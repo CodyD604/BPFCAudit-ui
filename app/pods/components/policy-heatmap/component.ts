@@ -43,13 +43,14 @@ export default class PolicyHeatmap extends Component<PolicyHeatmapArgs> {
   }
 
   get eventDataByLine() {
-    const eventDataByLine: Record<string, any> = {};
+    const eventDataByLine: Record<string, number> = {};
 
     if (this.args.policyLines) {
-      this.args.policyLines.forEach((value) => {
-        if (value.includedByPolicy) {
+      this.args.policyLines.forEach((policyLine) => {
+        if (policyLine.includedByPolicy) {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          eventDataByLine[value.lineNumber!.toString()] = value.eventCount;
+          eventDataByLine[policyLine.lineNumber!.toString()] =
+            policyLine.eventCount;
         }
       });
     }
@@ -58,10 +59,11 @@ export default class PolicyHeatmap extends Component<PolicyHeatmapArgs> {
   }
 
   get policyByLine() {
-    if (this.args.policy) {
-      const eventDataByLine = this.eventDataByLine;
-      const colourSpectrum = this.colourSpectrum;
+    const eventDataByLine = this.eventDataByLine;
+    const colourSpectrum = this.colourSpectrum;
 
+    // User-provided policy
+    if (this.args.policy) {
       return this.args.policy
         .get('policyContent')
         .split(/\r?\n/)
@@ -82,7 +84,20 @@ export default class PolicyHeatmap extends Component<PolicyHeatmapArgs> {
           };
         });
     }
-
+    // Default policy lines
+    else {
+      if (this.args.policyLines) {
+        return this.args.policyLines
+          .filter((policyLine) => !policyLine.includedByPolicy)
+          .map((policyLine) => {
+            return {
+              content: policyLine.line,
+              eventCount: abbreviateNumber(policyLine.eventCount, 0),
+              heatColour: colourSpectrum.colourAt(policyLine.eventCount),
+            };
+          });
+      }
+    }
     return [];
   }
 }

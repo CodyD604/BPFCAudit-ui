@@ -9,16 +9,24 @@ interface PolicyHeaderArgs {
 }
 
 export default class PolicyHeader extends Component<PolicyHeaderArgs> {
+  get representsPolicy() {
+    return !this.args.coversOtherRules;
+  }
+
   get policySubtitle() {
     if (this.args.policyLineMeta) {
-      return this.args.policyLineMeta.eventTotal + ' events';
+      if (this.args.coversOtherRules) {
+        return this.args.policyLineMeta.defaultPolicyEventTotal + ' events';
+      } else {
+        return this.args.policyLineMeta.includedByPolicyEventTotal + ' events';
+      }
     }
 
     return 'No event data';
   }
 
   get policyName() {
-    if (this.args.policy) {
+    if (this.representsPolicy && this.args.policy) {
       return this.args.policy.get('name');
     } else if (this.args.coversOtherRules) {
       return 'Other events';

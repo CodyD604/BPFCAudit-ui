@@ -5,8 +5,10 @@
     </div>
 
     <div class="policy-header-buttons-right">
-        <BsButton @type="tertiary" @size="sm">
-            <FaIcon @icon="exchange-alt" @size="2x" />
-        </BsButton>
+        {{#if this.representsPolicy}}
+            <BsButton @type="tertiary" @size="sm">
+                <FaIcon @icon="exchange-alt" @size="2x" />
+            </BsButton>
+        {{/if}}
     </div>
 </div>
