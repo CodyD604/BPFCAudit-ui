@@ -1,0 +1,20 @@
+<BsModal
+  @open={{this.isOpen}}
+  @onHidden={{action onHidden}} 
+  @position='center'
+  @size='sm'
+  as |modal|>
+  <modal.header>
+    <h4 class="modal-title">
+      {{this.modalTitle}}
+    </h4>
+  </modal.header>
+  <modal.body>
+    <BsForm @formLayout="vertical" @model={{this.service}} @onSubmit={{action this.onSubmit}} as |form|>
+      <form.element @controlType="text" @label="Name" @property="name" as |el|>
+        <el.control placeholder="Service name" required />
+      </form.element>
+      <form.submitButton>{{this.submitText}}</form.submitButton>
+    </BsForm>
+  </modal.body>
+</BsModal>

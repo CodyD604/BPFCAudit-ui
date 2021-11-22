@@ -4,10 +4,9 @@ import { restartableTask } from 'ember-concurrency';
 import { tracked } from '@glimmer/tracking';
 import Controller from '@ember/controller';
 import { taskFor } from 'ember-concurrency-ts';
+import pollTask from 'bpfcaudit-ui/utils/pollTask';
 
 export default class Service extends Route {
-  POLLING_INTERVAL = 30000; // 30 seconds
-
   queryParams = {
     auditId: {
       refreshModel: true,
@@ -60,20 +59,9 @@ export default class Service extends Route {
     });
   }
 
+  // TODO: would ideally not create a new polling function each time
   @restartableTask
-  *pollForServiceChanges() {
-    try {
-      while (true) {
-        yield this.delay(this.POLLING_INTERVAL);
-        // @ts-expect-error TS doesn't know about perform
-        yield this.getService.perform();
-      }
-    } finally {
-      // TODO: remove
-      console.log(`Done polling.`);
-    }
+  pollForServiceChanges() {
+    return pollTask(this.getService);
   }
-
-  // TODO: there is probably an existing method out there that does this
-  delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 }

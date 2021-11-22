@@ -7,12 +7,39 @@ export default class Service extends Controller {
   queryParams = ['auditId'];
   fetchServiceTask: any;
   @tracked auditId: string | null = null;
+  @tracked isAuditSelectorOpen = false;
+  @tracked isServiceEditorOpen = false;
 
   @action
   onSelectAudit(audit: AuditModel | null) {
     if (audit) {
       this.auditId = audit.id;
     }
+  }
+
+  @action
+  auditSelectorClick() {
+    this.isAuditSelectorOpen = true;
+  }
+
+  @action
+  auditSelectorHidden() {
+    this.isAuditSelectorOpen = false;
+  }
+
+  @action
+  serviceEditClick() {
+    this.isServiceEditorOpen = true;
+  }
+
+  @action
+  serviceEditorHidden() {
+    this.isServiceEditorOpen = false;
+  }
+
+  @action
+  onServiceUpdateSubmit() {
+    this.isServiceEditorOpen = false;
   }
 }
 

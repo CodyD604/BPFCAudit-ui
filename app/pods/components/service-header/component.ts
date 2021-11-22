@@ -1,6 +1,5 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import ServiceModel from 'bpfcaudit-ui/models/service';
 import { inject as service } from '@ember/service';
 import { Router } from '@ember/routing';
@@ -9,12 +8,12 @@ import AuditModel from 'bpfcaudit-ui/models/audit';
 interface ServiceHeaderArgs {
   model: ServiceModel;
   onSelectAudit: (audit: AuditModel | null) => void;
-  fetchServiceTask: any;
+  auditSelectorClick: () => void;
+  serviceEditClick: () => void;
 }
 
 export default class ServiceHeader extends Component<ServiceHeaderArgs> {
   @service router!: Router;
-  @tracked isAuditSelectorOpen = false;
 
   get meta() {
     return this.args.model.meta;
@@ -36,18 +35,6 @@ export default class ServiceHeader extends Component<ServiceHeaderArgs> {
     return 'Service not yet audited';
   }
 
-  get audits() {
-    return this.args.model.audits;
-  }
-
-  get fetchServiceTask() {
-    return this.args.fetchServiceTask;
-  }
-
-  get serviceId() {
-    return this.args.model.id;
-  }
-
   @action
   backButtonClick() {
     this.router.transitionTo('services');
@@ -55,18 +42,15 @@ export default class ServiceHeader extends Component<ServiceHeaderArgs> {
 
   @action
   auditSelectorClick() {
-    this.isAuditSelectorOpen = true;
+    if (this.args.auditSelectorClick) {
+      this.args.auditSelectorClick();
+    }
   }
 
   @action
-  auditSelectorHidden() {
-    this.isAuditSelectorOpen = false;
-  }
-
-  @action
-  onSelectAudit(audit: AuditModel) {
-    if (this.args.onSelectAudit) {
-      this.args.onSelectAudit(audit);
+  serviceEditClick() {
+    if (this.args.serviceEditClick) {
+      this.args.serviceEditClick();
     }
   }
 }

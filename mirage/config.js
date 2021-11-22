@@ -5,7 +5,9 @@ export default function () {
   this.namespace = 'bpfca/api/v1';
 
   this.get('/services');
+  this.post('/services');
   this.get('/services/:id');
+  this.patch('/services/:id');
   this.post('/audits', (schema, request) => {
     const requestData = JSON.parse(request.requestBody);
     const attributes = requestData.attributes;

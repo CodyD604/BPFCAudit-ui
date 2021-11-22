@@ -16,6 +16,8 @@
       <ModelsTable
         @data={{this.audits}}
         @columns={{this.columns}}
+        {{! TODO: fix fontawesome icons not rendering in this table}}
+        @showComponentFooter={{false}}
         @showColumnsDropdown={{false}}
         @useFilteringByColumns={{false}}
         @showGlobalFilter={{false}}

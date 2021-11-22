@@ -9,22 +9,12 @@
     </div>
 
     <div class="service-header-buttons-right">
-        <BsButton @type="tertiary" @onClick={{action auditSelectorClick}}>
+        <BsButton @type="tertiary" @onClick={{action this.auditSelectorClick}}>
             <FaIcon @icon="archive" @size="3x" />
         </BsButton>
 
-        <BsButton @type="tertiary">
+        <BsButton @type="tertiary" @onClick={{action this.serviceEditClick}}>
             <FaIcon @icon="pen-square" @size="3x" />
         </BsButton>
     </div>
 </div>
-
-<AuditSelector
-    @isOpen={{this.isAuditSelectorOpen}}
-    @audits={{this.audits}}
-    @onHide={{this.auditSelectorHidden}}
-    @onSelectAudit={{this.onSelectAudit}}
-    @fetchServiceTask={{this.fetchServiceTask}}
-    @serviceId={{this.serviceId}}
-    >
-</AuditSelector>

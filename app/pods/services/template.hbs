@@ -1,4 +1,4 @@
-All of the services!
+All services:
 
 <ul>
     {{#each this.model as |service|}}
@@ -7,3 +7,15 @@ All of the services!
     </li>
     {{/each}}
 </ul>
+
+<BsButton @onClick={{action this.auditCreatorClick}}>Create Service</BsButton>
+
+<ServiceModal
+    @isOpen={{this.isServiceCreatorOpen}}
+    @service={{this.serviceModelForCreation}}
+    @onHide={{this.auditCreatorHidden}}
+    @fetchServiceTask={{this.fetchServicesTask}}
+    @isCreating={{true}}
+    @onSubmit={{this.onServiceCreateSubmit}}
+    >
+</ServiceModal>
