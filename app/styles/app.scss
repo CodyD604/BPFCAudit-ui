@@ -8,7 +8,7 @@ $bpfca-global-font-size: 14px;
 
 @import "ember-bootstrap/bootstrap";
 
-/* Probably don't want to use global selector */
+/* TODO: Probably don't want to use global selector */
 * {
     font-family: $bpfca-global-font;
     font-size: $bpfca-global-font-size;

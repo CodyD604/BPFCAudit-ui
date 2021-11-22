@@ -11,6 +11,8 @@ $heat-container-width: 52px;
         align-items: center;
 
         .heat-container {
+            /* Smaller font for event counts. Roboto seems larger on Ubuntu or is not present by default*/
+            font-family: 'arial';
             width: $heat-container-width;
             display: flex;
             align-items: center;
