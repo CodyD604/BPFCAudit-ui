@@ -1,5 +1,10 @@
 <div class="service-route">
-    <ServiceHeader @model={{this.model.service}}></ServiceHeader>
+    <ServiceHeader 
+        @model={{this.model.service}} 
+        @onSelectAudit={{action this.onSelectAudit}} 
+        @fetchServiceTask={{this.fetchServiceTask}}
+        @serviceId={{this.serviceId}}
+    ></ServiceHeader>
 
     <div class="service-content">
         <div class="policy-container">

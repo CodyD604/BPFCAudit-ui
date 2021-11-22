@@ -1,4 +1,5 @@
 import ApplicationAdapter from 'bpfcaudit-ui/adapters/application';
+import Store from '@ember-data/store';
 
 interface QueryArgs {
   policy: string;
@@ -9,7 +10,7 @@ export default class PolicyLine extends ApplicationAdapter {
     return 'analyzePolicy';
   }
 
-  query(_store: any, _type: string, query: QueryArgs) {
+  query(_store: Store, _type: string, query: QueryArgs) {
     const url = this.buildURL('policy-line');
     return this.ajax(url, 'POST', { data: query });
   }

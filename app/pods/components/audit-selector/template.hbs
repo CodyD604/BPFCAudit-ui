@@ -1,0 +1,42 @@
+<BsModal
+  @open={{this.isOpen}}
+  @onHidden={{action onHidden}} 
+  @position='center'
+  @size='lg'
+  as |modal|>
+  <modal.header>
+    <h4 class="modal-title">
+      Audit Management
+    </h4>
+  </modal.header>
+  <modal.body>
+    {{#if this.noAudits}}
+      No audits to display
+    {{else}}
+      <ModelsTable
+        @data={{this.audits}}
+        @columns={{this.columns}}
+        @showColumnsDropdown={{false}}
+        @useFilteringByColumns={{false}}
+        @showGlobalFilter={{false}}
+        @showPageSize={{false}}
+        @columnComponents={{hash
+          selectRow=(
+            component "audit-select-button"
+            onClick=this.onSelectAudit
+          )
+        }}
+      />
+    {{/if}}
+  </modal.body>
+  <modal.footer>
+    <label for="time-to-run">Time to run (seconds):</label>
+    <Input
+      id="time-to-run"
+      @type="number"
+      @value=60
+      @min=5
+    />
+    <BsButton @type="success" @onClick={{action this.onRunAudit}}>Run Audit</BsButton>
+  </modal.footer>
+</BsModal>

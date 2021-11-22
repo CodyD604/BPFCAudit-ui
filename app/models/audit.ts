@@ -6,6 +6,7 @@ export default class AuditModel extends Model {
   @attr('date') endTime!: string;
   @attr('date') publishedAt!: string;
   @attr() completionMessage!: string;
+  @attr() serviceId!: string; // Used for POST request. There may be a better way.
   @belongsTo('service') service: any;
 }
 

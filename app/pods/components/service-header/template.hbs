@@ -1,5 +1,5 @@
 <div class="service-header">
-    <BsButton @type="tertiary" @size="sm" @onClick={{this.backButtonClick}}>
+    <BsButton @type="tertiary" @size="sm" @onClick={{action backButtonClick}}>
         <FaIcon @icon="chevron-left" @size="2x" />
     </BsButton>
 
@@ -9,7 +9,7 @@
     </div>
 
     <div class="service-header-buttons-right">
-        <BsButton @type="tertiary">
+        <BsButton @type="tertiary" @onClick={{action auditSelectorClick}}>
             <FaIcon @icon="archive" @size="3x" />
         </BsButton>
 
@@ -18,3 +18,13 @@
         </BsButton>
     </div>
 </div>
+
+<AuditSelector
+    @isOpen={{this.isAuditSelectorOpen}}
+    @audits={{this.audits}}
+    @onHide={{this.auditSelectorHidden}}
+    @onSelectAudit={{this.onSelectAudit}}
+    @fetchServiceTask={{this.fetchServiceTask}}
+    @serviceId={{this.serviceId}}
+    >
+</AuditSelector>

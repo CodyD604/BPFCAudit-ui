@@ -6,6 +6,24 @@ export default function () {
 
   this.get('/services');
   this.get('/services/:id');
+  this.post('/audits', (schema, request) => {
+    const requestData = JSON.parse(request.requestBody);
+    const attributes = requestData.attributes;
+
+    // Create audit
+    const auditAttrs = {
+      status: 'IN_PROGRESS',
+      completionMessage: 'Audit in progress.',
+      startTime: new Date().toISOString(),
+      endTime: attributes.endTime,
+    };
+    const audit = schema.db.audits.insert(auditAttrs);
+
+    // Add audit id to service
+    const service = schema.services.find(attributes.serviceId);
+    service.auditIds.push(audit.id);
+    schema.db.services.update(service.id, { auditIds: service.auditIds });
+  });
   this.post('/analyzePolicy', (_schema, request) => {
     const requestData = JSON.parse(request.requestBody);
     const eventCountUpperBound = 10 ** 6;
