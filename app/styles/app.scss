@@ -5,7 +5,9 @@ $bpfca-global-font-size: 14px;
 @use "app/pods/components/service-header/style.scss" as serviceHeader;
 @use "app/pods/components/policy-header/style.scss" as policyHeader;
 @use "app/pods/components/policy-heatmap/style.scss" as policyHeatmap;
+@use "app/pods/components/policy-modal/style.scss" as policyModal;
 
+@import "ember-power-select";
 @import "ember-bootstrap/bootstrap";
 
 /* TODO: Probably don't want to use global selector */

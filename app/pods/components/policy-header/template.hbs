@@ -6,9 +6,18 @@
 
     <div class="policy-header-buttons-right">
         {{#if this.representsPolicy}}
-            <BsButton @type="tertiary" @size="sm">
-                <FaIcon @icon="exchange-alt" @size="2x" />
+            <BsButton @type="tertiary" @size="sm" @onClick={{action this.policyChangeClick}}>
+                <FaIcon @icon="exchange-alt" @size="2x"/>
             </BsButton>
         {{/if}}
     </div>
 </div>
+
+<PolicyModal
+    @isOpen={{this.isPolicyChangeOpen}}
+    @service={{this.service}}
+    @onHide={{this.policyChangeHidden}}
+    @fetchPoliciesTask={{this.fetchPoliciesTask}}
+    @onSubmit={{this.policyChangeOnSubmit}}
+    >
+</PolicyModal>

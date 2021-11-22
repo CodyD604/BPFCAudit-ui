@@ -1,0 +1,28 @@
+<BsModal
+  @open={{this.isOpen}}
+  @onHidden={{action onHidden}} 
+  @position='center'
+  @size='sm'
+  as |modal|>
+  <modal.header>
+    <h4 class="modal-title">
+      Change policy
+    </h4>
+  </modal.header>
+  <modal.body>
+    {{#if this.arePoliciesLoading}}
+      Policies loading...
+    {{else}}
+      <div class="policy-dropdown">
+      <PowerSelect
+        @selected={{this.selectedPolicyName}} 
+        @options={{this.policyNames}} 
+        @onChange={{this.choosePolicy}}
+        @renderInPlace={{true}} as |policyName|>
+          {{policyName}}
+        </PowerSelect>
+      </div>
+      <BsButton @type="primary" @onClick={{action this.onSubmit}}>Submit</BsButton>
+    {{/if}}
+  </modal.body>
+</BsModal>

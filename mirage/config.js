@@ -7,7 +7,24 @@ export default function () {
   this.get('/services');
   this.post('/services');
   this.get('/services/:id');
-  this.patch('/services/:id');
+  this.patch('/services/:id', function (schema, request) {
+    const requestData = JSON.parse(request.requestBody);
+
+    const id = request.params.id;
+    const service = schema.services.find(id);
+
+    if (
+      requestData.data.relationships &&
+      requestData.data.relationships.policy
+    ) {
+      service.policyId = requestData.data.relationships.policy.data.id;
+      service.save();
+    }
+
+    let attrs = this.normalizedRequestAttrs();
+    return service.update(attrs);
+  });
+  this.get('/policies');
   this.post('/audits', (schema, request) => {
     const requestData = JSON.parse(request.requestBody);
     const attributes = requestData.data.attributes;
@@ -43,10 +60,6 @@ export default function () {
       annotatedLines
     );
 
-    /*
-    const defaultPolicyLines = `- capability: [setUID]
-    - net: server`;
-    */
     const defaultPolicyLines = `- capability: [setUID]\n- net: server`;
 
     const defaultPolicyAnalysis = annotateLines(

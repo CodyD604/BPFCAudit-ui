@@ -22,6 +22,7 @@ export default class Service extends Route {
     controller.setProperties({
       // @ts-expect-error TODO: fix typing
       fetchServiceTask: this.getService,
+      fetchPoliciesTask: this.getPolicies,
     });
   }
 
@@ -43,6 +44,7 @@ export default class Service extends Route {
     const auditId = this.auditId;
 
     if (service && service.policy && auditId) {
+      // TODO: use traditional AJAX instead of query. policy-line should not be an ember-data model.
       const policyLines = this.store.query('policy-line', {
         policy: service.policy.policyContent,
         auditId,
@@ -57,6 +59,12 @@ export default class Service extends Route {
     return RSVP.hash({
       service,
     });
+  }
+
+  @restartableTask
+  *getPolicies() {
+    // @ts-expect-error TODO: fix TS weirdness with yield
+    return yield this.store.findAll('policy');
   }
 
   // TODO: would ideally not create a new polling function each time

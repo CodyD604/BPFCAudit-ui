@@ -10,8 +10,14 @@
 
     <div class="service-content">
         <div class="policy-container">
-            <PolicyHeader @policy={{this.model.service.policy}} @coversOtherRules={{false}}
-                @policyLineMeta={{this.model.policyLines.meta}}></PolicyHeader>
+            <PolicyHeader 
+                @policy={{this.model.service.policy}} 
+                @coversOtherRules={{false}}
+                @policyLineMeta={{this.model.policyLines.meta}} 
+                @service={{this.model.service}}
+                @fetchPoliciesTask={{this.fetchPoliciesTask}}
+                @policyChangeOnSubmit={{this.onPolicyChangeSubmit}}
+            ></PolicyHeader>
             <PolicyHeatmap @policy={{this.model.service.policy}} @policyLines={{this.model.policyLines}}>
             </PolicyHeatmap>
         </div>

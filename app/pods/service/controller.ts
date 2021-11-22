@@ -2,10 +2,12 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import AuditModel from 'bpfcaudit-ui/models/audit';
+import { taskFor } from 'ember-concurrency-ts';
 
 export default class Service extends Controller {
   queryParams = ['auditId'];
   fetchServiceTask: any;
+  fetchPoliciesTask: any;
   @tracked auditId: string | null = null;
   @tracked isAuditSelectorOpen = false;
   @tracked isServiceEditorOpen = false;
@@ -40,6 +42,11 @@ export default class Service extends Controller {
   @action
   onServiceUpdateSubmit() {
     this.isServiceEditorOpen = false;
+  }
+
+  @action
+  onPolicyChangeSubmit() {
+    taskFor(this.fetchServiceTask).perform();
   }
 }
 

@@ -1,14 +1,24 @@
 import Component from '@glimmer/component';
 import PolicyModel from 'bpfcaudit-ui/models/policy';
 import PolicyLineMeta from 'bpfcaudit-ui/types/policy-line-meta';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+import ServiceModel from 'bpfcaudit-ui/models/service';
+import { taskFor } from 'ember-concurrency-ts';
 
 interface PolicyHeaderArgs {
+  service: ServiceModel;
   policy?: PolicyModel;
   policyLineMeta?: PolicyLineMeta;
   coversOtherRules?: boolean;
+  policyChangeClick: () => void;
+  policyChangeOnSubmit: () => void;
+  fetchPoliciesTask: any;
 }
 
 export default class PolicyHeader extends Component<PolicyHeaderArgs> {
+  @tracked isPolicyChangeOpen = false;
+
   get representsPolicy() {
     return !this.args.coversOtherRules;
   }
@@ -33,5 +43,32 @@ export default class PolicyHeader extends Component<PolicyHeaderArgs> {
     } else {
       return 'No policy loaded';
     }
+  }
+
+  get service() {
+    return this.args.service;
+  }
+
+  get serviceId() {
+    return this.service.id;
+  }
+
+  get fetchPoliciesTask() {
+    return this.args.fetchPoliciesTask;
+  }
+
+  get policyChangeOnSubmit() {
+    return this.args.policyChangeOnSubmit;
+  }
+
+  @action
+  policyChangeClick() {
+    this.isPolicyChangeOpen = true;
+    taskFor(this.args.fetchPoliciesTask).perform();
+  }
+
+  @action
+  policyChangeHidden() {
+    this.isPolicyChangeOpen = false;
   }
 }
