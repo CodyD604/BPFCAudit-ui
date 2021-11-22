@@ -14,11 +14,13 @@ export default class Audit extends ApplicationAdapter {
     const url = this.buildURL('audit');
     return this.ajax(url, 'POST', {
       data: {
-        type: 'audits',
-        // TODO: better way to access create parameters?
-        attributes: {
-          endTime: snapshot._attributes.endTime,
-          serviceId: snapshot._attributes.serviceId,
+        data: {
+          type: 'audits',
+          // TODO: better way to access create parameters?
+          attributes: {
+            endTime: snapshot._attributes.endTime,
+            serviceId: snapshot._attributes.serviceId,
+          },
         },
       },
     });

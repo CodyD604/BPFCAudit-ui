@@ -10,7 +10,7 @@ export default function () {
   this.patch('/services/:id');
   this.post('/audits', (schema, request) => {
     const requestData = JSON.parse(request.requestBody);
-    const attributes = requestData.attributes;
+    const attributes = requestData.data.attributes;
 
     // Create audit
     const auditAttrs = {
