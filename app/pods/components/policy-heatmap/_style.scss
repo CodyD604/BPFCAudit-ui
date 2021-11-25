@@ -27,6 +27,7 @@ $heat-container-width: 52px;
         }
 
         .policy-line {
+            padding-left: 3px;
             margin-bottom: 0;
         }
     }
@@ -36,7 +37,7 @@ $heat-container-width: 52px;
     content: "";
     position: absolute;
     border-left: 1px solid darkgrey;
-    margin-left: $heat-container-width - 1px;
+    margin-left: $heat-container-width + 3px;
     top: 0;
     bottom: 0;
 }
