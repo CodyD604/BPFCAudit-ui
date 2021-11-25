@@ -6,7 +6,7 @@ export default Factory.extend({
   },
 
   afterCreate(service, server) {
-    server.createList('audit', 3, { service });
+    server.createList('audit', 100, { service });
     server.create('policy', { service });
   },
 });
