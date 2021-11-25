@@ -35,7 +35,7 @@ export default Factory.extend({
       allow:
         # /dev/urandom, /dev/random, /dev/null
         - dev: random
-        - dev: null
+        - dev: null # Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
       
         # Access to log files
         - file: {pathname: /var/log/httpd, access: rw}
