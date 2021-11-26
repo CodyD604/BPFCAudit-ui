@@ -98,7 +98,7 @@ export default Factory.extend({
         - ipc: mysqld`;
 
       let policy = '';
-      const timesToDuplicate = 5;
+      const timesToDuplicate = 1;
       for (let i = 0; i < timesToDuplicate; i++) {
         policy += '\n' + policyToDuplicate;
       }
