@@ -28,14 +28,14 @@ export default Factory.extend({
     taint:
       - fs: {path: /tmp, access: wa}`;
     } else if (i % 3 === 1) {
-      return `name: httpd
+      const policyToDuplicate = `name: httpd
       cmd: 'httpd'
       defaultTaint: false
       
       allow:
         # /dev/urandom, /dev/random, /dev/null
         - dev: random
-        - dev: null # Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        - dev: null
       
         # Access to log files
         - file: {pathname: /var/log/httpd, access: rw}
@@ -96,6 +96,14 @@ export default Factory.extend({
         # Taint when performing any ipc or networking
         - net: [send, recv]
         - ipc: mysqld`;
+
+      let policy = '';
+      const timesToDuplicate = 5;
+      for (let i = 0; i < timesToDuplicate; i++) {
+        policy += '\n' + policyToDuplicate;
+      }
+
+      return policy;
     } else {
       return `# A unique name for the policy file, REQUIRED
       name: foo
